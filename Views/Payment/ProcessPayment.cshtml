@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Payment Processed";
+}
+
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-10 col-lg-6 col-xl-5">
+                <div class="card " style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+                        <form  name="donationForm" id="donationForm" action="/Payment/PaymentSuccess" method="post">
+
+                            <center><h2 class="fw-bold mb-2 text-uppercase">Thông tin ủng hộ <br />từ thiện</h2></center>
+                            <img class="content-image img-fluid d-block mx-auto" src="https://img.vietqr.io/image/970415-113366668888-compact.png" alt="">
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label">Ngân hàng thụ hưởng</label>
+                                <input name="bankName" class="form-control form-control-lg" value="HD-Bank" readonly required="" />
+                            </div>
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label">Số tài khoản</label>
+                                <input name="accountNumber" class="form-control form-control-lg" value="99999999999" readonly required="" />
+                            </div>
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label">Người thụ hưởng</label>
+                                <input name="beneficiary" class="form-control form-control-lg" value="Hutech Donation Foundation" readonly required="" />
+                            </div>
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label">Họ và tên người ủng hộ</label>
+                                <input name="donorName" class="form-control form-control-lg" value="@ViewBag.Name" readonly required="" />
+                            </div>
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label">Số tiền ủng hộ</label>
+                                <input name="amount" class="form-control form-control-lg" value="@ViewBag.Amount" readonly required="" />
+                            </div>
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label">Nội dung chuyển khoản</label>
+                                <textarea name="paymentDescription" class="form-control" readonly required="">@ViewBag.PaymentDes </textarea>
+                            </div>
+                            <center><button type="submit" class="btn btn-success btn-lg">Thanh toán</button></center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

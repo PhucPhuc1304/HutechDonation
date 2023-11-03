@@ -1,0 +1,235 @@
+﻿<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+	<div class="overlay overlay-bg"></div>
+	<div class="container">
+		<div class="row fullscreen align-items-center justify-content-start" style="height: 915px;">
+			<div class="banner-content col-lg-9 col-md-12">
+				<h1>
+					Hutech Donation Fundation <br>
+					Xây Dựng Tương Lai, Chạm Đến Trái Tim
+				</h1>
+				<a href="#donate" class="head-btn btn text-uppercase">Ủng hộ ngay</a>
+			</div>
+		</div>
+	</div>
+
+</section>
+<!-- End banner Area -->
+<!-- Start callto Area -->
+<section class="callto-area relative">
+	<div class="container">
+		<div class="row d-flex callto-wrap justify-content-between pt-40 pb-40">
+			<h3 class="text-white">
+				Chung thay hành động và quyên góp ngay từ bây giờ
+
+			</h3>
+			<a href="#" class="head-btn head-btn2 btn text-uppercase">Ủng hộ ngay</a>
+		</div>
+	</div>
+</section>
+<!-- End callto Area -->
+<!-- Start project Area -->
+<section class="project-area section-gap" id="project">
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-8 pb-80 header-text">
+				<h1>Các dự án đang cần giúp đỡ</h1>
+				<p>
+					Chúng tôi tự hào giới thiệu các dự án từ thiện mà chúng tôi đã triển khai để giúp đỡ những người cần thiết. Từ việc xây trường, cung cấp nhu yếu phẩm cho người vô gia cư đến hỗ trợ giáo dục cho trẻ em. Hãy cùng nhau tạo ra những thay đổi tích cực trong cộng đồng.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			@model List<Product>
+				@foreach (var product in Model)
+				{
+				<div class="col-lg-4 col-md-4 project-wrap">
+					<div class="single-project">
+						<div class="content">
+							<a href="/Donation/@product.Producid" target="_blank">
+								<div class="content-overlay"></div>
+								<img class="content-image img-fluid d-block mx-auto" src="@product.Images" alt="">
+								<div class="content-details fadeIn-bottom">
+									<a href="#" class="head-btn btn text-uppercase">Ủng hộ</a>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="details">
+						<a href="/Donation/@product.Producid"><h2>@product.Name</h2></a>
+						<p>@product.Description</p>
+						<a class="text-uppercase" href="/Donation/@product.Producid">read more</a>
+					</div>
+				</div>
+				}
+			</div>
+</section>
+<!-- End project Area -->
+<!-- Start about Area -->
+<section class="about-area" id="about">
+	<div class="container-fluid">
+		<div class="row d-flex justify-content-end align-items-center">
+			<div class="col-lg-6 col-md-12 about-left no-padding">
+				<img class="img-fluid" src="img/about-img.jpg" alt="">
+			</div>
+			<div class="col-lg-6 col-md-12 about-right">
+				<h1>
+					Về chúng tôi
+				</h1>
+				<p>
+					Hutech Donation Foundation được sáng lập bởi nhóm HPT thuộc Trường Đại học Công nghệ TP. Hồ Chí Minh. Chúng tôi là một tổ chức từ thiện nhằm xây dựng cộng đồng và tạo ra một tương lai tươi sáng cho những người cần giúp đỡ. Chúng tôi cam kết phát triển các dự án từ thiện bền vững, tập trung vào giáo dục, chăm sóc sức khỏe, phát triển cộng đồng và bảo vệ môi trường. Cùng nhau, chúng ta có thể tạo nên sự thay đổi tích cực và xây dựng một thế giới tốt đẹp hơn.
+				</p>
+				<button class="primary-btn mt-20 text-uppercase ">learn more<span class="lnr lnr-arrow-right"></span></button>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End about Area -->
+<!-- Start volunteer Area -->
+<section class="volunteer-area section-gap">
+	<div class="container">
+		<div class="row d-flex justify-content-center">
+			<div class="col-md-8 pb-80 header-text">
+				<h1>Tình nguyện viên</h1>
+				<p>
+					Những người tình nguyện với niềm đam mê và tình yêu thương, xây dựng cộng đồng tốt đẹp mỗi ngày."
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 vol-wrap">
+				<div class="single-vol">
+					<div class="content">
+						<a href="#" target="_blank">
+							<div class="content-overlay"></div>
+							<img class="content-image img-fluid d-block mx-auto" src="img/v1.jpg" alt="">
+							<div class="content-details fadeIn-bottom">
+								<h4>Phạm Minh Hiếu</h4>
+								<p>
+									Người sáng lập
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 vol-wrap">
+				<div class="single-vol">
+					<div class="content">
+						<a href="#" target="_blank">
+							<div class="content-overlay"></div>
+							<img class="content-image img-fluid d-block mx-auto" src="img/v2.jpg" alt="">
+							<div class="content-details fadeIn-bottom">
+								<h4>Nguyễn Huy Hoàng</h4>
+								<p>
+									Người sáng lập
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 vol-wrap">
+				<div class="single-vol">
+					<div class="content">
+						<a href="#" target="_blank">
+							<div class="content-overlay"></div>
+							<img class="content-image img-fluid d-block mx-auto" src="img/v3.jpg" alt="">
+							<div class="content-details fadeIn-bottom">
+								<h4>Ngô Hoàng Phúc</h4>
+								<p>
+									Người sáng lập
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 vol-wrap">
+				<div class="single-vol">
+					<div class="content">
+						<a href="#" target="_blank">
+							<div class="content-overlay"></div>
+							<img class="content-image img-fluid d-block mx-auto" src="img/v4.jpg" alt="">
+							<div class="content-details fadeIn-bottom">
+								<h4>Phan Thanh Tùng</h4>
+								<p>
+									Người sáng lập
+								</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<!-- End volunteer Area -->
+<!-- Start donate Area -->
+
+<section class="donate-area relative section-gap" id="donate">
+	<div class="overlay overlay-bg"></div>
+	<div class="container">
+		<div class="row d-flex justify-content-end">
+			<div class="col-lg-6 col-sm-12 pb-80 header-text">
+				<h1>Ủng hộ ngay</h1>
+				<p>
+					Mỗi đóng góp của bạn sẽ mang lại niềm vui và sự hỗ trợ cho những người cần thiết.<br /> Hãy cùng nhau xây dựng một tương lai tươi sáng và bền vững!
+				</p>
+			</div>
+		</div>
+		<div class="row d-flex justify-content-center">
+			<div class="col-lg-6 contact-left">
+				<div class="single-info">
+					<h4>Sứ mệnh</h4>
+					<p>
+						Chúng tôi cam kết xây dựng cộng đồng và tạo ra một tương lai tươi sáng cho những người cần giúp đỡ.<br /> Chúng tôi đặt mục tiêu phát triển các dự án từ thiện bền vững, tập trung vào giáo dục, chăm sóc sức khỏe, phát triển cộng đồng và bảo vệ môi trường.
+					</p>
+				</div>
+				<div class="single-info">
+					<h4>Tầm nhìn:</h4>
+					<p>
+						Chúng tôi hướng đến xây dựng một xã hội nhân ái, nơi mọi người có cơ hội bình đẳng và nhận được sự hỗ trợ mà họ xứng đáng.<br> Chúng tôi muốn tạo ra những thay đổi tích cực và bền vững, giúp mọi người vượt qua khó khăn và khám phá tiềm năng của mình.
+					</p>
+				</div>
+
+			</div>
+			<div class="col-lg-6 contact-right">
+				<form class="booking-form" id="myForm" action="/Payment/ProcessPayment" method="post">
+					<div class="row">
+						<div class="col-lg-12 d-flex flex-column">
+							<select name="type" class="app-select form-control" required>
+									@foreach (var product in Model)
+								{
+									<option value="@product.Producid">@product.Producid - @product.Name</option>
+
+								}
+							</select>
+						</div>
+						<div class="col-lg-6 d-flex flex-column">
+							<input name="fname" placeholder="Họ và tên" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="form-control mt-20" required="" type="text" required>
+						</div>
+						<div class="col-lg-6 d-flex flex-column">
+							<input name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="form-control mt-20" required="" type="email">
+						</div>
+						<div class="col-lg-12 d-flex flex-column">
+							<input  typeof="number" name="amount" placeholder="Số tiền ủng hộ (VNĐ)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Số tiền ủng hộ (VNĐ)'" class="form-control mt-20" required="" type="text">
+
+							<textarea class="form-control mt-20" name="message" placeholder="Tin nhắn" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+						</div>
+
+						<div class="col-lg-12 d-flex justify-content-end send-btn">
+							<button type = "submit" class="submit-btn primary-btn mt-20 text-uppercase ">donate<span class="lnr lnr-arrow-right"></span></button>
+						</div>
+
+					</div>
+				</form>
+				<p class="payment-method">
+					Chấp nhận thanh toán :   <img src="img/payment.png" alt="">
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End donate Area -->
