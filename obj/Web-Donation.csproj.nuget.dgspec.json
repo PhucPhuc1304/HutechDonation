@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Web-Donation\\Web-Donation\\Web-Donation.csproj": {}
+    "D:\\HutechDonation\\Web-Donation.csproj": {}
   },
   "projects": {
-    "D:\\Web-Donation\\Web-Donation\\Web-Donation.csproj": {
+    "D:\\HutechDonation\\Web-Donation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Web-Donation\\Web-Donation\\Web-Donation.csproj",
+        "projectUniqueName": "D:\\HutechDonation\\Web-Donation.csproj",
         "projectName": "Web-Donation",
-        "projectPath": "D:\\Web-Donation\\Web-Donation\\Web-Donation.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\Web-Donation\\Web-Donation\\obj\\",
+        "projectPath": "D:\\HutechDonation\\Web-Donation.csproj",
+        "packagesPath": "C:\\Users\\Hieu Pham\\.nuget\\packages\\",
+        "outputPath": "D:\\HutechDonation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hieu Pham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -80,6 +81,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.17, 5.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -88,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.417\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
