@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyProductAttribute("Web-Donation")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+089d31eaa19521c2375ff9b85d3c5a1504613f9b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9204d0baeac0b6cd701d7a5179675414fba48c82")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web-Donation.Views")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
