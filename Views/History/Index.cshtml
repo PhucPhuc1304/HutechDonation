@@ -1,59 +1,87 @@
-﻿@{
-    ViewData["Title"] = "History Tranfer";
+﻿@model Web_Donation.Models.CombinedViewModel
+
+@{
+    ViewData["Title"] = "Block Details";
 }
 
-<section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="card " style="border-radius: 1rem;">
-                    <div class="card-body p-5">
-                    @model List<BlockDetailsViewModel>
+@{
+    var pagedBlockDetails = Model.PagedBlockDetailsList;
+}
 
-                    <center><h2>History</h2></center>
-                    <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                <th scope="col"><center><h3>Index</h3></center></th>
-                                <th scope="col"><center><h3>Data</h3></center></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var block in Model)
-                                {
-                                <tr>
-                                    <td class ="col-2"><strong>Block </strong>@block.Index</td>
-                                    <td>
-                                        <p>
-                                            <strong>Số tài khoản người gửi: </strong>@block.Sender
-                                        </p>
-                                        <p>
-                                            <strong>Số tiền ủng hộ: </strong>@block.Amount
+<section>
+    <div class="container border-3" >
 
-                                        </p>
-                                        <p>
-                                            <strong>Ngày giao dịch: </strong>@block.TransactionDate
-
-                                        </p>
-                                        <p>
-                                            <strong>Previous Hash: </strong>@block.PreviousHash
-
-                                        </p>
-                                        <p>
-                                            <strong>Hash: </strong>@block.Hash
-                                        </p>
-                                    </td>
-
-
-
-                                </tr>
-                                  
-                                }
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
+        <div class="row" style="padding-top: 50px; display: flex; justify-content: center; align-items: center;">
+            <h1>LỊCH SỬ ỦNG HỘ</h1>
         </div>
+        <div class="row mt-4">
+            <div class="col-1"></div>
+            
+            @foreach (var filteredBlockViewModel in Model.FilteredBlockViewModelList)
+            {
+                <div class="col-3 border-top border-bottom ">
+                    <h4>@filteredBlockViewModel.Product_ID</h4>
+                    <span class="balance" style="display: inline-block; font-size: 20px">@string.Format("{0:N0} VNĐ", filteredBlockViewModel.TotalAmount)</span>
+                </div>
+                <!-- Add logic to display filtered blocks if needed -->
+            }
 
+             
+            <div class="col-1">
+                <h4>Tổng</h4>
+                <span class="balance" style="display: inline-block; font-size: 20px">@string.Format("{0:N0} VNĐ", ViewBag.Balance)</span>
+            </div>
+          
+            <div class="col-1"></div>
+        </div>
+        <div class="mt-4"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 border">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center"><h4>STT</h4></th>
+                            <th scope="col" style="text-align: center"><h4>Nội dung</h4></th>
+                           
+                        </tr>
+                    </thead>
+                        <tbody>
+                            @foreach (var blockDetail in pagedBlockDetails)
+                            {
+                                <tr>
+                                <td class="center-vertical" style="text-align: center"><h5>@blockDetail.Index</h5></td>
+                                <td>
+                                        <p><strong>Họ tên:</strong> @blockDetail.NameSender</p>
+                                        <p><strong>Ngày giao dịch:</strong> @blockDetail.Timestamp</p>
+                                    <p><strong>Số tiền:</strong> @string.Format("{0:N0} VNĐ", blockDetail.Amount)</p>
+                                        <p><strong>Nội dung:</strong> @blockDetail.TransactionDescription</p>
+                                        <p><strong>Previous Hash:</strong> @blockDetail.PreviousHash</p>
+                                        <p><strong>Hash:</strong> @blockDetail.Hash</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                </table>
+            </div>
+            <div class="col-1"></div>
+            <div class="mb-4"></div>
+        </div>
+        <div class="pagination">
+            @if (Model.PagedBlockDetailsList.HasPreviousPage)
+            {
+                <a href="?page=1">First</a>
+                <a href="?page=@(Model.PagedBlockDetailsList.PageNumber - 1)">Previous</a>
+            }
+            @for (var i = 1; i <= Model.PagedBlockDetailsList.PageCount; i++)
+            {
+                <a href="?page=@i" class="@(i == Model.PagedBlockDetailsList.PageNumber ? "active" : "")">@i</a>
+            }
+            @if (Model.PagedBlockDetailsList.HasNextPage)
+            {
+                <a href="?page=@(Model.PagedBlockDetailsList.PageNumber + 1)">Next</a>
+                <a href="?page=@Model.PagedBlockDetailsList.PageCount">Last</a>
+            }
+        </div>
+    </div>
 </section>

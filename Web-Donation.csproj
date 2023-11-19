@@ -6,9 +6,156 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\money.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\money.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <None Include="wwwroot\admin\css\.DS_Store" />
+    <None Include="wwwroot\admin\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\admin\css\bootstrap\mixins\.DS_Store" />
+    <None Include="wwwroot\admin\dashboard\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\data\jquery.vmap.sampledata.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\jquery.vmap.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\jquery.vmap.min.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\jquery.vmap.packed.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\continents\jquery.vmap.africa.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\continents\jquery.vmap.asia.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\continents\jquery.vmap.australia.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\continents\jquery.vmap.europe.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\continents\jquery.vmap.north-america.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\continents\jquery.vmap.south-america.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\jquery.vmap.algeria.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\jquery.vmap.brazil.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\jquery.vmap.europe.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\jquery.vmap.france.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\jquery.vmap.germany.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\jquery.vmap.russia.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\jquery.vmap.usa.js" />
+    <None Include="wwwroot\admin\dashboard\jqvmap\maps\jquery.vmap.world.js" />
+    <None Include="wwwroot\admin\dashboard\js\bootstrap.min.js" />
+    <None Include="wwwroot\admin\dashboard\js\Chart.min.js" />
+    <None Include="wwwroot\admin\dashboard\js\jquery.min.js" />
+    <None Include="wwwroot\admin\dashboard\js\templatemo_script.js" />
+    <None Include="wwwroot\admin\fonts\.DS_Store" />
+    <None Include="wwwroot\admin\images\.DS_Store" />
+    <None Include="wwwroot\admin\js\.DS_Store" />
+    <None Include="wwwroot\admin\js\bootstrap.min.js" />
+    <None Include="wwwroot\admin\js\jquery.min.js" />
+    <None Include="wwwroot\admin\js\main.js" />
+    <None Include="wwwroot\admin\js\popper.js" />
+    <None Include="wwwroot\admin\scss\.DS_Store" />
+    <None Include="wwwroot\admin\scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\admin\scss\bootstrap\bootstrap-grid.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\bootstrap-reboot.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\bootstrap.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_alert.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_background-variant.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_badge.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_border-radius.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_box-shadow.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_breakpoints.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_buttons.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_caret.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_clearfix.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_deprecate.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_float.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_forms.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_gradients.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_grid-framework.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_grid.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_hover.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_image.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_list-group.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_lists.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_nav-divider.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_pagination.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_reset-text.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_resize.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_screen-reader.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_size.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_table-row.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_text-hide.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_text-truncate.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_transition.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\mixins\_visibility.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_align.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_background.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_borders.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_clearfix.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_display.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_embed.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_flex.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_float.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_overflow.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_position.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_screenreaders.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_shadows.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_sizing.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_spacing.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_stretched-link.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_text.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\utilities\_visibility.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\vendor\_rfs.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_alert.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_badge.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_breadcrumb.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_button-group.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_buttons.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_card.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_carousel.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_close.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_code.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_custom-forms.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_dropdown.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_forms.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_functions.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_grid.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_images.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_input-group.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_jumbotron.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_list-group.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_media.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_mixins.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_modal.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_nav.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_navbar.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_pagination.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_popover.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_print.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_progress.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_reboot.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_root.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_spinners.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_tables.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_toasts.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_tooltip.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_transitions.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_type.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_utilities.scss" />
+    <None Include="wwwroot\admin\scss\bootstrap\_variables.scss" />
+    <None Include="wwwroot\admin\scss\style.scss" />
+    <None Include="wwwroot\js\money.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="MongoDB.Bson" Version="2.22.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.22.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PagedList" Version="1.17.0" />
+    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
 
 </Project>

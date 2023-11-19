@@ -1,0 +1,199 @@
+﻿@model List<Web_Donation.Models.FilteredBlockViewModel>
+
+
+
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+
+@{
+    var username = Context.Session.GetString("Username");
+    var userId = Context.Session.GetString("UserId");
+    var role = Context.Session.GetString("Role");
+}
+
+@if (role == "full")
+{
+    <div class="template-page-wrapper">
+        <div class="navbar-collapse collapse templatemo-sidebar">
+            <ul class="templatemo-sidebar-menu active">
+                <li><a href="/Admin/Home"><i class="fa fa-home"></i>Dashboard</a></li>
+                <li class="sub">
+                    <a href="javascript:;">
+                        <i class="fa fa-database"></i> Dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Product">Thông tin dự án</a></li>
+                        <li class="active"><a href="/Admin/Home/AddProduct">Thêm dự án</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub">
+                    <a href="javascript:;">
+                        <i class="fa fa-cubes"></i> Chi tiết dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Details">Thông tin chi tiết dự án</a></li>
+                        <li><a href="/Admin/Home/AddDetails">Thêm chi tiết dự án</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub open active">
+                    <a href="javascript:;">
+                        <i class="fa fa-users "></i> Quản lý tài khoản
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Account">Thông tin tài khoản</a></li>
+                        <li><a href="/Admin/Home/AddAccount">Thêm tài khoản</a></li>
+                    </ul>
+                </li>
+                <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Log Out</a></li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+        <div class="templatemo-content-wrapper">
+            <div class="templatemo-content">
+                <!-- Các phần HTML khác -->
+                <h1>
+                    Về chúng tôi
+                </h1>
+                <p>
+                    Hutech Donation Foundation được sáng lập bởi nhóm HPT thuộc Trường Đại học Công nghệ TP. Hồ Chí Minh. Chúng tôi là một tổ chức từ thiện nhằm xây dựng cộng đồng và tạo ra một tương lai tươi sáng cho những người cần giúp đỡ. Chúng tôi cam kết phát triển các dự án từ thiện bền vững, tập trung vào giáo dục, chăm sóc sức khỏe, phát triển cộng đồng và bảo vệ môi trường. Cùng nhau, chúng ta có thể tạo nên sự thay đổi tích cực và xây dựng một thế giới tốt đẹp hơn.
+                </p>
+                <h3>THỐNG KÊ SỐ TIỀN </h3>
+
+                <div class="row mt-4 d-flex flex-wrap justify-content-start">
+                    <!-- Thay đổi thuộc tính flex-wrap và justify-content để sắp xếp các phần tử trên cùng 1 hàng -->
+                    @foreach (var filteredBlockViewModel in Model)
+                    {
+                        <div class="col-3 border-top border-bottom">
+                            <h4>@filteredBlockViewModel.Product_ID</h4>
+                            <span class="balance" style="display: inline-block; font-size: 20px">@string.Format("{0:N0} VNĐ", filteredBlockViewModel.TotalAmount)</span>
+                        </div>
+                        <!-- Add logic to display filtered blocks if needed -->
+                    }
+                </div>
+                   
+               
+        </div>
+            </div>
+    </div>
+
+
+}
+else if (role == "read")
+{
+    <div class="template-page-wrapper">
+        <div class="navbar-collapse collapse templatemo-sidebar">
+            <ul class="templatemo-sidebar-menu active">
+                <li><a href="/Admin/Home"><i class="fa fa-home"></i>Dashboard</a></li>
+                <li class="sub">
+                    <a href="javascript:;">
+                        <i class="fa fa-database"></i> Dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Product">Thông tin dự án</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub">
+                    <a href="javascript:;">
+                        <i class="fa fa-cubes"></i> Chi tiết dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Details">Thông tin chi tiết dự án</a></li>
+                    </ul>
+                </li>
+                <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Log Out</a></li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+        <div class="templatemo-content-wrapper">
+            <div class="templatemo-content">
+                <!-- Các phần HTML khác -->
+                <h1>
+                    Về chúng tôi
+                </h1>
+                <p>
+                    Hutech Donation Foundation được sáng lập bởi nhóm HPT thuộc Trường Đại học Công nghệ TP. Hồ Chí Minh. Chúng tôi là một tổ chức từ thiện nhằm xây dựng cộng đồng và tạo ra một tương lai tươi sáng cho những người cần giúp đỡ. Chúng tôi cam kết phát triển các dự án từ thiện bền vững, tập trung vào giáo dục, chăm sóc sức khỏe, phát triển cộng đồng và bảo vệ môi trường. Cùng nhau, chúng ta có thể tạo nên sự thay đổi tích cực và xây dựng một thế giới tốt đẹp hơn.
+                </p>
+                <h3>THỐNG KÊ SỐ TIỀN </h3>
+
+                <div class="row mt-4 d-flex flex-wrap justify-content-start">
+                    <!-- Thay đổi thuộc tính flex-wrap và justify-content để sắp xếp các phần tử trên cùng 1 hàng -->
+                    @foreach (var filteredBlockViewModel in Model)
+                    {
+                        <div class="col-3 border-top border-bottom">
+                            <h4>@filteredBlockViewModel.Product_ID</h4>
+                            <span class="balance" style="display: inline-block; font-size: 20px">@string.Format("{0:N0} VNĐ", filteredBlockViewModel.TotalAmount)</span>
+                        </div>
+                        <!-- Add logic to display filtered blocks if needed -->
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+}
+else
+{
+    <center>
+        <section>
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-10 col-lg-6 col-xl-5">
+                        <div class="card " style="border-radius: 1rem;">
+                            <div class="card-body p-5">
+                                <div class="container payment_success">
+                                    <p>
+                                        <h3>Xin lỗi</h3>
+                                        <h3>Bạn không có quyền truy cập vào trang này !!!</h3>
+                                    </p>
+                                    <p>Trang sẽ tự động chuyển về trang chủ sau <span id="countdown">15</span> giây</p>
+                                    <a href="/admin/home/index"> Trang chủ</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+
+
+    <script>
+        // Hàm để tự động chuyển hướng sau 15 giây
+        function redirectToHome() {
+            window.location.href = '/admin/home/index'; // Thay đổi '/home' thành URL của trang chủ của bạn
+        }
+
+        // Gọi hàm redirectToHome sau 15 giây
+        let countdown = 15;
+        let countdownElement = document.getElementById('countdown');
+
+        function updateCountdown() {
+            countdown--;
+            countdownElement.textContent = countdown;
+
+            if (countdown <= 0) {
+                redirectToHome();
+            }
+        }
+
+        setInterval(updateCountdown, 1000); // Cập nhật mỗi giây (1000 mili giây)
+    </script>
+
+}

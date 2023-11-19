@@ -1,0 +1,153 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+
+@{
+    var username = Context.Session.GetString("Username");
+    var userId = Context.Session.GetString("UserId");
+    var role = Context.Session.GetString("Role");
+}
+
+@if (role == "full")
+{
+    <div class="template-page-wrapper">
+        <div class="navbar-collapse collapse templatemo-sidebar">
+            <ul class="templatemo-sidebar-menu">
+                <li><a href="/Admin/Home"><i class="fa fa-home"></i>Dashboard</a></li>
+                <li class="sub">
+                    <a href="javascript:;">
+                        <i class="fa fa-database"></i> Dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Product">Thông tin dự án</a></li>
+                        <li class="active"><a href="/Admin/Home/AddProduct">Thêm dự án</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub">
+                    <a href="javascript:;">
+                        <i class="fa fa-cubes"></i> Chi tiết dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Details">Thông tin chi tiết dự án</a></li>
+                        <li><a href="/Admin/Home/AddDetails">Thêm chi tiết dự án</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub open active">
+                    <a href="javascript:;">
+                        <i class="fa fa-users active"></i> Quản lý tài khoản
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Account">Thông tin tài khoản</a></li>
+                        <li><a href="/Admin/Home/AddAccount">Thêm tài khoản</a></li>
+                    </ul>
+                </li>
+                <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Log Out</a></li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+
+        <div class="template-page-wrapper">
+            <div class="templatemo-content">
+                <h2>Add Project</h2>
+                <form action="/Admin/Home/AddDetails" method="post" enctype="multipart/form-data">
+                    <div>
+                        <label for="IDProduct">Mã dự án:</label>
+
+                        <select name="IDProduct" id="IDProduct">
+                            @foreach (var project in Model)
+                            {
+                                <option value="@project.Producid">
+                                    @project.Producid
+
+                            </option>
+                            }
+                        </select>
+                        
+                    </div>
+
+                    <div>
+                        <label for="time_begin">Thời gian bắt đầu tài trợ:</label>
+                        <input type="date" id="time_begin" name="time_begin" class="form-control">
+                    </div>
+                    <label for="status">Tình trạng</label>
+                    <input id="status" name="status" class="form-control">
+                    <label for="info_Product">Thông tin dự án : </label>
+                    <textarea id="info_Product" name="info_Product" class="form-control"> </textarea>
+                    <label for="info_Details">Hoàn cảnh : </label>
+                    <textarea id="info_Details" name="info_Details" class="form-control"> </textarea>
+                    <label for="type_donation">Cách thức hổ trợ : </label>
+                    <textarea id="type_donation" name="type_donation" class="form-control"> </textarea>
+                    <label for="Image1">Ảnh 1: </label>
+                    <input type="file" id="Image1" name="Image1" class="form-control">
+                    <label for="Image1">Ảnh 2: </label>
+                    <input type="file" id="Image2" name="Image2" class="form-control">
+                    <label for="Image1">Ảnh 3: </label>
+                    <input  type ="file"id="Image3" name="Image3" class="form-control">
+
+                    <div>
+                        <input type="submit" value="Add Project" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+}
+else
+{
+    <center>
+        <section>
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-10 col-lg-6 col-xl-5">
+                        <div class="card " style="border-radius: 1rem;">
+                            <div class="card-body p-5">
+                                <div class="container payment_success">
+                                    <p>
+                                        <h3>Xin lỗi</h3>
+                                        <h3>Bạn không có quyền truy cập vào trang này !!!</h3>
+                                    </p>
+                                    <p>Trang sẽ tự động chuyển về trang chủ sau <span id="countdown">15</span> giây</p>
+                                    <a href="/admin/home/index"> Trang chủ</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+
+
+    <script>
+        // Hàm để tự động chuyển hướng sau 15 giây
+        function redirectToHome() {
+            window.location.href = '/admin/home/index'; // Thay đổi '/home' thành URL của trang chủ của bạn
+        }
+
+        // Gọi hàm redirectToHome sau 15 giây
+        let countdown = 15;
+        let countdownElement = document.getElementById('countdown');
+
+        function updateCountdown() {
+            countdown--;
+            countdownElement.textContent = countdown;
+
+            if (countdown <= 0) {
+                redirectToHome();
+            }
+        }
+
+        setInterval(updateCountdown, 1000); // Cập nhật mỗi giây (1000 mili giây)
+    </script>
+
+}

@@ -17,5 +17,8 @@ namespace Web_Donation.Models
 		public string Description { get; set; }
 
 		public string Images { get; set; }
+		
+
+		public decimal Target { get; set; }
 	}
 }

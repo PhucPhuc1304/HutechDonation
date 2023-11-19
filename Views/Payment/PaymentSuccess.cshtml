@@ -1,14 +1,44 @@
-﻿@{
-    ViewData["Title"] = "Payment Success";
-}
+﻿
+<section>
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-10 col-lg-6 col-xl-5">
+                <div class="card " style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+                        <div class="container payment_success">
+                            <p>
+                                <h3>Cảm ơn @ViewBag.DonorName</h3>
+                                <h3>Đã ủng hộ số tiền: @ViewBag.Amount</h3>
+                            </p>
+                            <p>Trang sẽ tự động chuyển về trang chủ sau <span id="countdown">15</span> giây</p>
+                            <a href="/home"> Trang chủ</a>
+                        </div>
 
-<h2>Payment Successful</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<p>Bank Name: @ViewBag.BankName</p>
-<p>Account Number: @ViewBag.AccountNumber</p>
-<p>Beneficiary: @ViewBag.Beneficiary</p>
-<p>Donor Name: @ViewBag.DonorName</p>
-<p>Amount: @ViewBag.Amount</p>
-<p>Payment Description: @ViewBag.</p>
+<script>
+    // Hàm để tự động chuyển hướng sau 15 giây
+    function redirectToHome() {
+        window.location.href = '/home'; // Thay đổi '/home' thành URL của trang chủ của bạn
+    }
 
-    
+    // Gọi hàm redirectToHome sau 15 giây
+    let countdown = 15;
+    let countdownElement = document.getElementById('countdown');
+
+    function updateCountdown() {
+        countdown--;
+        countdownElement.textContent = countdown;
+
+        if (countdown <= 0) {
+            redirectToHome();
+        }
+    }
+
+    setInterval(updateCountdown, 1000); // Cập nhật mỗi giây (1000 mili giây)
+</script>

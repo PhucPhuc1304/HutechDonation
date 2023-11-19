@@ -17,4 +17,8 @@ public class MongoDBContext
     {
         return _database.GetCollection<Product>("Product");
     }
+    public IMongoCollection<Details> GetDetailsCollection()
+    {
+        return _database.GetCollection<Details>("Details");
+    }
 }

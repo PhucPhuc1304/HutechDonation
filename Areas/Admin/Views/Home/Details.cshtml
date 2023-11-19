@@ -1,0 +1,347 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+
+@{
+    var username = Context.Session.GetString("Username");
+    var userId = Context.Session.GetString("UserId");
+    var role = Context.Session.GetString("Role");
+}
+
+@if (role == "full")
+{
+    <div class="template-page-wrapper">
+        <div class="navbar-collapse collapse templatemo-sidebar">
+            <ul class="templatemo-sidebar-menu">
+                <li><a href="/Admin/Home"><i class="fa fa-home"></i>Dashboard</a></li>
+                <li class="sub open active">
+                    <a href="javascript:;">
+                        <i class="fa fa-database"></i> Dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Product">Thông tin dự án</a></li>
+                        <li class="active"><a href="/Admin/Home/AddProduct">Thêm dự án</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub">
+                    <a href="javascript:;">
+                        <i class="fa fa-cubes"></i> Chi tiết dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="#">Thêm chi tiết dự án</a></li>
+                        <li><a href="#">Sửa chi tiết dự án</a></li>
+                        <li><a href="#">Xóa chi tiết dự án</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub ">
+                    <a href="javascript:;">
+                        <i class="fa fa-users"></i> Quản lý tài khoản
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Account">Thông tin tài khoản</a></li>
+                        <li><a href="/Admin/Home/AddAccount">Thêm tài khoản</a></li>
+                    </ul>
+                </li>
+                <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Log Out</a></li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+        <div class="templatemo-content-wrapper">
+            <div class="templatemo-content">
+                <h2>Project List</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Mã dự án</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Giới thiệu</th>
+                            <th>Chi tiết</th>
+                            <th>Loại ủng hộ</th>
+                            <th>Hình ảnh 1</th>
+                            <th>Hình ảnh 2</th>
+                            <th>Hình ảnh 3</th>
+                            <th style="width: 100px;">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var project in Model)
+                        {
+                            <tr>
+                                <td>@project.Id</td>
+                                <td>@project.IDProduct</td>
+                                <td>@project.Status</td>
+                                <td>@project.TimeBegin</td>
+                                <td>@project.InfoProduct</td>
+                                <td>@project.InfoDetails</td>
+                                <td>@project.TypeDonation</td>
+                                <td>@project.Image1</td>
+                                <td>@project.Image2</td>
+                                <td>@project.Image3</td>
+                                <td>
+                                    <a href="javascript:void(0);" onclick="editRecord('@project.Id', '@project.IDProduct','@project.TimeBegin', '@project.Status', '@project.InfoProduct','@project.InfoDetails','@project.TypeDonation','@project.Image1','@project.Image2','@project.Image3')" class="edit-btn" title="Edit" data-toggle="tooltip" style="color: green;"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="javascript:void(0);" class="delete-btn" title="Delete" data-toggle="tooltip" style="color: red;" onclick="deleteItem('@project.Id')"><i class="material-icons">&#xE872;</i></a>
+
+                                    <!-- Add action buttons here -->
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form id="editProductForm" action="/Admin/Home/EditDetails" method="post" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Record</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input name="editId" type="hidden" id="editId" />
+                        <label for="editProductId">Product ID:</label>
+                        <input type="text" id="editProductId" name="editProductId" class="form-control" readonly />
+
+                        <label for="editStatus">Status:</label>
+                        <input type="text" id="editStatus" name="editStatus" class="form-control" />
+
+                        <label for="editTimeBegin">Time Begin:</label>
+                        <input type="date" id="editTimeBegin" name="editTimeBegin" class="form-control" />
+
+                        <label for="editInfoProduct">Info Product:</label>
+                        <textarea id="editInfoProduct" name="editInfoProduct" class="form-control"></textarea>
+
+                        <label for="editInfoDetails">Info Details:</label>
+                        <textarea id="editInfoDetails" name="editInfoDetails" class="form-control"></textarea>
+
+                        <label for="editTypeDonation">Type Donation:</label>
+                        <input type="text" id="editTypeDonation" name="editTypeDonation" class="form-control" />
+
+                        <label for="editImage1">Image 1:</label>
+                        <input type="file" id="editImage1" name="editImage1" class="form-control" />
+
+                        <label for="editImage2">Image 2:</label>
+                        <input type="file" id="editImage2" name="editImage2" class="form-control" />
+
+                        <label for="editImage3">Image 3:</label>
+                        <input type="file" id="editImage3" name="editImage3" class="form-control" />
+
+                     
+                      
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- Modal -->
+    <form id="confirmDeleteForm" action="/Admin/Home/DeleteDetails" method="post" enctype="multipart/form-data">
+        <div class="modal" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xóa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc chắn muốn xóa không?</p>
+                        <!-- Thêm các trường cần thiết cho form xác nhận xóa -->
+                        <input type="hidden" id="itemIdToDelete" name="itemIdToDelete" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        // Hàm để xử lý việc xóa
+        function deleteItem(itemId) {
+            // Set giá trị itemId vào trường ẩn của form
+            $('#itemIdToDelete').val(itemId);
+
+            // Hiển thị modal
+            $('#confirmDeleteModal').modal('show');
+        }
+
+        // Hàm để xử lý việc gửi form xác nhận xóa
+        function submitDeleteForm() {
+            // Lấy giá trị từ trường ẩn của form
+            var itemId = $('#itemIdToDelete').val();
+
+            // Thực hiện các hành động xóa ở đây (sử dụng Ajax hoặc submit form trực tiếp)
+
+            // Sau khi thực hiện xóa, đóng modal
+            $('#confirmDeleteModal').modal('hide');
+        }
+
+        function editRecord(id, productId, timeBegin, status, infoProduct, infoDetails, typeDonation, image1, image2, image3) {
+            // Your function logic here using the provided parameters
+            // For example:
+            document.getElementById('editId').value = id;
+            document.getElementById('editProductId').value = productId;
+            document.getElementById('editTimeBegin').value = timeBegin
+            document.getElementById('editStatus').value = status;
+            document.getElementById('editInfoProduct').value = infoProduct;
+            document.getElementById('editInfoDetails').value = infoDetails;
+            document.getElementById('editTypeDonation').value = typeDonation;
+            // Create a new file input element
+            
+            // Show the modal or perform further actions
+            $('#editModal').modal('show');
+        }
+
+
+    </script>
+
+}
+else if (role == "read")
+{
+    <div class="template-page-wrapper">
+        <div class="navbar-collapse collapse templatemo-sidebar">
+            <ul class="templatemo-sidebar-menu">
+                <li><a href="/Admin/Home"><i class="fa fa-home"></i>Dashboard</a></li>
+                <li class="sub open active">
+                    <a href="javascript:;">
+                        <i class="fa fa-database"></i> Dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Product">Thông tin dự án</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub">
+                    <a href="javascript:;">
+                        <i class="fa fa-cubes"></i> Chi tiết dự án
+                        <div class="pull-right"><span class="caret"></span></div>
+                    </a>
+                    <ul class="templatemo-submenu">
+                        <li><a href="/Admin/Home/Details">Thông tin chi tiết dự án</a></li>
+
+                    </ul>
+                </li>
+
+
+                <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Log Out</a></li>
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+        <div class="templatemo-content-wrapper">
+            <div class="templatemo-content">
+                <h2>Project List</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Mã dự án</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Giới thiệu</th>
+                            <th>Chi tiết</th>
+                            <th>Loại ủng hộ</th>
+                            <th>Hình ảnh 1</th>
+                            <th>Hình ảnh 2</th>
+                            <th>Hình ảnh 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var project in Model)
+                        {
+                            <tr>
+                                <td>@project.Id</td>
+                                <td>@project.IDProduct</td>
+                                <td>@project.Status</td>
+                                <td>@project.TimeBegin</td>
+                                <td>@project.InfoProduct</td>
+                                <td>@project.InfoDetails</td>
+                                <td>@project.TypeDonation</td>
+                                <td>@project.Image1</td>
+                                <td>@project.Image2</td>
+                                <td>@project.Image3</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+}
+else
+{
+    <center>
+        <section>
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-10 col-lg-6 col-xl-5">
+                        <div class="card " style="border-radius: 1rem;">
+                            <div class="card-body p-5">
+                                <div class="container payment_success">
+                                    <p>
+                                        <h3>Xin lỗi</h3>
+                                        <h3>Bạn không có quyền truy cập vào trang này !!!</h3>
+                                    </p>
+                                    <p>Trang sẽ tự động chuyển về trang chủ sau <span id="countdown">15</span> giây</p>
+                                    <a href="/admin/home/index"> Trang chủ</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </center>
+
+
+    <script>
+        // Hàm để tự động chuyển hướng sau 15 giây
+        function redirectToHome() {
+            window.location.href = '/admin/home/index'; // Thay đổi '/home' thành URL của trang chủ của bạn
+        }
+
+        // Gọi hàm redirectToHome sau 15 giây
+        let countdown = 15;
+        let countdownElement = document.getElementById('countdown');
+
+        function updateCountdown() {
+            countdown--;
+            countdownElement.textContent = countdown;
+
+            if (countdown <= 0) {
+                redirectToHome();
+            }
+        }
+
+        setInterval(updateCountdown, 1000); // Cập nhật mỗi giây (1000 mili giây)
+    </script>
+
+}

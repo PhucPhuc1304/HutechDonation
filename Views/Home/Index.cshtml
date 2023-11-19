@@ -20,10 +20,10 @@
 	<div class="container">
 		<div class="row d-flex callto-wrap justify-content-between pt-40 pb-40">
 			<h3 class="text-white">
-				Chung thay hành động và quyên góp ngay từ bây giờ
+				Chung tay hành động và quyên góp ngay từ bây giờ.
 
 			</h3>
-			<a href="#" class="head-btn head-btn2 btn text-uppercase">Ủng hộ ngay</a>
+			<a href="#donate" class="head-btn head-btn2 btn text-uppercase">Ủng hộ ngay</a>
 		</div>
 	</div>
 </section>
@@ -35,33 +35,47 @@
 			<div class="col-md-8 pb-80 header-text">
 				<h1>Các dự án đang cần giúp đỡ</h1>
 				<p>
-					Chúng tôi tự hào giới thiệu các dự án từ thiện mà chúng tôi đã triển khai để giúp đỡ những người cần thiết. Từ việc xây trường, cung cấp nhu yếu phẩm cho người vô gia cư đến hỗ trợ giáo dục cho trẻ em. Hãy cùng nhau tạo ra những thay đổi tích cực trong cộng đồng.
+					Chúng tôi tự hào giới thiệu các dự án từ thiện mà chúng tôi đã triển khai để giúp đỡ những người cần thiết. Từ việc xây trường học, cung cấp nhu yếu phẩm cho người vô gia cư đến hỗ trợ giáo dục cho trẻ em. Hãy cùng nhau tạo ra những thay đổi tích cực trong cộng đồng.
 				</p>
 			</div>
 		</div>
 		<div class="row">
-			@model List<Product>
-				@foreach (var product in Model)
-				{
+			@model Web_Donation.Models.DetailsPageViewModel
+
+			@for (var i = 0; i < Model.Products2.Count; i++)
+			{
+				var product = Model.Products2[i];
+				var totalAmount = i < Model.FilteredBlockViewModelList.Count ? Model.FilteredBlockViewModelList[i].TotalAmount : 0;
+
 				<div class="col-lg-4 col-md-4 project-wrap">
 					<div class="single-project">
 						<div class="content">
-							<a href="/Donation/@product.Producid" target="_blank">
+							<a href="/Details/@product.Producid" target="_blank">
 								<div class="content-overlay"></div>
 								<img class="content-image img-fluid d-block mx-auto" src="@product.Images" alt="">
 								<div class="content-details fadeIn-bottom">
-									<a href="#" class="head-btn btn text-uppercase">Ủng hộ</a>
+									<a href="#donation" class="head-btn btn text-uppercase">Ủng hộ</a>
 								</div>
 							</a>
 						</div>
 					</div>
 					<div class="details">
-						<a href="/Donation/@product.Producid"><h2>@product.Name</h2></a>
+						<a href="/Details/@product.Producid"><h2>@product.Name</h2></a>
+						<div style="margin-top: 10px; margin-bottom: 10px;">
+							<h4 style="display: inline-block;">Mục tiêu:</h4>
+							<h4 class="balance" style="display: inline-block; font-size: 20px">@string.Format("{0:N0} VND", product.Target)</h4>
+							
+						</div>
+						<div style="margin-top: 10px; margin-bottom: 10px;">
+							<h4 style="display: inline-block;">Đã ủng hộ:</h4>
+							<h4 class="balance" style="display: inline-block; font-size: 20px">@string.Format("{0:N0} VND", totalAmount)</h4>
+						</div>
 						<p>@product.Description</p>
-						<a class="text-uppercase" href="/Donation/@product.Producid">read more</a>
+						<a class="text-uppercase" href="/Details/@product.Producid">read more</a>
 					</div>
 				</div>
-				}
+			}
+
 			</div>
 </section>
 <!-- End project Area -->
@@ -79,7 +93,6 @@
 				<p>
 					Hutech Donation Foundation được sáng lập bởi nhóm HPT thuộc Trường Đại học Công nghệ TP. Hồ Chí Minh. Chúng tôi là một tổ chức từ thiện nhằm xây dựng cộng đồng và tạo ra một tương lai tươi sáng cho những người cần giúp đỡ. Chúng tôi cam kết phát triển các dự án từ thiện bền vững, tập trung vào giáo dục, chăm sóc sức khỏe, phát triển cộng đồng và bảo vệ môi trường. Cùng nhau, chúng ta có thể tạo nên sự thay đổi tích cực và xây dựng một thế giới tốt đẹp hơn.
 				</p>
-				<button class="primary-btn mt-20 text-uppercase ">learn more<span class="lnr lnr-arrow-right"></span></button>
 			</div>
 		</div>
 	</div>
@@ -92,7 +105,7 @@
 			<div class="col-md-8 pb-80 header-text">
 				<h1>Tình nguyện viên</h1>
 				<p>
-					Những người tình nguyện với niềm đam mê và tình yêu thương, xây dựng cộng đồng tốt đẹp mỗi ngày."
+					Những người tình nguyện với niềm đam mê và tình yêu thương, xây dựng cộng đồng tốt đẹp mỗi ngày.
 				</p>
 			</div>
 		</div>
@@ -100,7 +113,7 @@
 			<div class="col-lg-3 col-md-3 vol-wrap">
 				<div class="single-vol">
 					<div class="content">
-						<a href="#" target="_blank">
+						<a href="https://www.facebook.com/minhhieuphamit" target="_blank">
 							<div class="content-overlay"></div>
 							<img class="content-image img-fluid d-block mx-auto" src="img/v1.jpg" alt="">
 							<div class="content-details fadeIn-bottom">
@@ -116,7 +129,7 @@
 			<div class="col-lg-3 col-md-3 vol-wrap">
 				<div class="single-vol">
 					<div class="content">
-						<a href="#" target="_blank">
+						<a href="https://www.facebook.com/hoangkttk" target="_blank">
 							<div class="content-overlay"></div>
 							<img class="content-image img-fluid d-block mx-auto" src="img/v2.jpg" alt="">
 							<div class="content-details fadeIn-bottom">
@@ -148,7 +161,7 @@
 			<div class="col-lg-3 col-md-3 vol-wrap">
 				<div class="single-vol">
 					<div class="content">
-						<a href="#" target="_blank">
+						<a href="https://www.facebook.com/phucphuc1599/" target="_blank">
 							<div class="content-overlay"></div>
 							<img class="content-image img-fluid d-block mx-auto" src="img/v4.jpg" alt="">
 							<div class="content-details fadeIn-bottom">
@@ -200,7 +213,7 @@
 					<div class="row">
 						<div class="col-lg-12 d-flex flex-column">
 							<select name="type" class="app-select form-control" required>
-									@foreach (var product in Model)
+									@foreach (var product in Model.Products2)
 								{
 									<option value="@product.Producid">@product.Producid - @product.Name</option>
 
@@ -214,20 +227,17 @@
 							<input name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="form-control mt-20" required="" type="email">
 						</div>
 						<div class="col-lg-12 d-flex flex-column">
-							<input  typeof="number" name="amount" placeholder="Số tiền ủng hộ (VNĐ)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Số tiền ủng hộ (VNĐ)'" class="form-control mt-20" required="" type="text">
-
+							<input type="text" name="amount" placeholder="Số tiền ủng hộ (VNĐ)" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Số tiền ủng hộ (VNĐ)'" class="form-control mt-20" oninput="addCommas(this)">
+							<input type="text" id="amount_text" name="amount_text" placeholder="Số tiền ủng hộ bằng chữ" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Số tiền ủng hộ (VNĐ)'" class="form-control mt-20" oninput="addCommas(this)">
 							<textarea class="form-control mt-20" name="message" placeholder="Tin nhắn" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
 						</div>
-
 						<div class="col-lg-12 d-flex justify-content-end send-btn">
 							<button type = "submit" class="submit-btn primary-btn mt-20 text-uppercase ">donate<span class="lnr lnr-arrow-right"></span></button>
 						</div>
 
 					</div>
 				</form>
-				<p class="payment-method">
-					Chấp nhận thanh toán :   <img src="img/payment.png" alt="">
-				</p>
+			
 			</div>
 		</div>
 	</div>

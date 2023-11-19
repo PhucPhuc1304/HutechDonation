@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web_Donation.Areas.Admin.Models;
 
 namespace Web_Donation
 {
@@ -24,8 +25,14 @@ namespace Web_Donation
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
-            services.AddTransient<MongoDBContext>();
-            services.AddHttpClient();
+			services.AddTransient<MongoDBContext>();
+			services.AddHttpClient();
+			services.AddSession();
+            services.AddRazorPages(); // Add this line for Razor Pages
+            services.AddScoped<DbContext>();
+            services.AddTransient<DbContext>();
+
+
 
         }
 
@@ -46,19 +53,30 @@ namespace Web_Donation
 			app.UseStaticFiles();
 
 			app.UseRouting();
+			app.UseSession();
 
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
-					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					name: "adminArea",
+					pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+				);
+
 				endpoints.MapControllerRoute(
-					name: "history",
-					pattern: "History",
-					defaults: new { controller = "History", action = "Index" });
+					   name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+
+				);
+				endpoints.MapControllerRoute(
+					  name: "details",
+					  pattern: "Details/{id}",
+					  defaults: new { controller = "Home", action = "Details" });
+				endpoints.MapRazorPages();
 			});
-		}
+		
+
+    }
 	}
 }
